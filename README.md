@@ -14,7 +14,7 @@ Plant functional traits and their multidimensional trade-offs represent fundamen
 
 ```{r,class.source = 'fold-show'}
 # if (!requireNamespace("devtools", quietly = TRUE)) {install.packages("devtools")}
-# devtools::install_github("######")
+# devtools::install_github("temp20250212/MultiTraits")
 ```
 
 ## Main Functions
