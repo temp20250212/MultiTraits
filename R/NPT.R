@@ -100,8 +100,7 @@ NPT <- function(data, dimension) {
   P <- t(P)
   colnames(P) <- paste0(rep(c("pc1", "pc2"), n), ".", rep(names(dimension), each = 2))
   result <- vegan::rda(P)
-  f <- summary(result)
-  sec_scores <- vegan::scores(f, display = "species", scaling = 0)[, 1:2]
+  sec_scores <- vegan::scores(result, display = "species", scaling = 0)[, 1:2]
   r <- list(PCA_first = S, PCA_second = sec_scores, result = result)
   return(r)
 }

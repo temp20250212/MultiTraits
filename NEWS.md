@@ -1,3 +1,18 @@
+
+# MultiTraits 0.0.3 (2025-2-21)
+
+## Infrastructure
+
+* Added unit testing infrastructure using testthat package
+* Added test coverage for core functions
+
+## Bug fixes and minor improvements
+
+* Removed deprecated vegan::summary() call in NPT function in favor of direct scores() method
+
+
+
+
 # MultiTraits 0.0.2 (2024-12-21)
 
 ## Bug fixes
@@ -31,3 +46,11 @@
 * Removed WH dataset
 
 * Updated examples across package modules
+
+
+
+
+# MultiTraits 0.0.1 (2024-11-26)
+
+
+
