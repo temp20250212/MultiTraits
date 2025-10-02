@@ -1,23 +1,23 @@
-
 #' Plant Functional Traits Dataset from Ponderosa Pine Forests Flora (PFF)
 #'
 #' @description
 #' A dataset containing functional traits for 133 plant species commonly found in
 #' southwestern USA Pinus ponderosa var. scopulorum P. & C. Lawson (ponderosa pine) forests.
 #'
-#' @format A data frame with 137 rows and 20 variables:
+#' @format A data frame with 137 rows and 21 variables:
 #' \describe{
-#'   \item{family}{Plant family}
-#'   \item{species}{Plant species}
+#'   \item{species}{Plant species name}
+#'   \item{genus}{Plant genus name}
+#'   \item{family}{Plant family name}
 #'   \item{Height}{Canopy height (cm)}
 #'   \item{Leaf_area}{Leaf area (mm^2)}
 #'   \item{LDMC}{Leaf dry matter content (%)}
 #'   \item{SLA}{Specific leaf area (mm^2/mg)}
 #'   \item{SRL}{Specific root length (m/g)}
 #'   \item{SeedMass}{Seed mass (mg)}
-#'   \item{FltDate}{mean Flowering date (Julian day)}
-#'   \item{FltDur}{mean Flowering duration (days)}
-#'   \item{k_value}{decomposition decay constant, where proportion of original mass remaining = exp(- k-value*0.926)}
+#'   \item{FltDate}{Mean flowering date (Julian day)}
+#'   \item{FltDur}{Mean flowering duration (days)}
+#'   \item{k_value}{Decomposition decay constant, where proportion of original mass remaining = exp(- k-value*0.926)}
 #'   \item{Leaf_Cmass}{Leaf carbon content (% dry mass)}
 #'   \item{Leaf_Nmass}{Leaf nitrogen content (% dry mass)}
 #'   \item{Leaf_CN}{Leaf carbon to nitrogen ratio}

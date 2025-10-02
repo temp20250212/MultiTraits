@@ -1,0 +1,40 @@
+#' Phylogenetic Tree of 133 Plant Species from Pine Forest Flora
+#'
+#' A phylogenetic tree containing 133 plant species from a pine forest flora study.
+#' The tree includes both tip and node labels, is rooted, and contains branch lengths.
+#'
+#' @format A phylo object (phylogenetic tree) with the following structure:
+#' \describe{
+#'   \item{tips}{133 terminal nodes representing plant species}
+#'   \item{nodes}{121 internal nodes with taxonomic labels}
+#'   \item{tip.label}{Species names including Hymenopappus mexicanus,
+#'                    Heliomeris multiflora, Bahia dissecta, etc.}
+#'   \item{node.label}{Taxonomic group names including Spermatophyta,
+#'                     eudicotyledons, Pentapetalae, etc.}
+#'   \item{edge.length}{Branch lengths indicating evolutionary distances}
+#'   \item{root}{Tree is rooted}
+#' }
+#'
+#' @details
+#' This phylogenetic tree represents the evolutionary relationships among 133 plant
+#' species found in pine forest ecosystems. The tree structure includes:
+#' \itemize{
+#'   \item 133 terminal taxa (tip labels with species names)
+#'   \item 121 internal nodes with higher-level taxonomic classifications
+#'   \item Branch lengths representing evolutionary time or genetic distance
+#'   \item Root indicating the common ancestor of all included species
+#' }
+#'
+#' The tree was constructed as part of a comprehensive study examining plant
+#' functional strategies in pine forest communities, specifically testing the
+#' leaf-height-seed (LHS) plant strategy scheme proposed in functional ecology.
+#'
+#' @source
+#' Laughlin, D. C., Leppert, J. J., Moore, M. M., & Sieg, C. H. (2010). A multi-trait test
+#' of the leaf-height-seed plant strategy scheme with 133 species from a pine forest flora.
+#' Functional Ecology, 24(3), 485-700.
+#'
+#' @examples
+#' data(PFF_tree)
+#' print(PFF_tree)
+"PFF_tree"

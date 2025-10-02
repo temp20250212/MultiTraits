@@ -2,38 +2,73 @@
 % Please edit documentation in R/LHS.R
 \name{LHS}
 \alias{LHS}
-\title{Calculate LHS (Leaf-Height-Seed) Strategy}
+\title{Calculate LHS (Leaf-Height-Seed) Plant Ecological Strategy Classification}
 \usage{
 LHS(data)
 }
 \arguments{
-\item{data}{A data frame containing columns for SLA, Height, and SeedMass.}
+\item{data}{A data frame containing plant trait data with the following required columns:
+\describe{
+\item{SLA}{Specific leaf area (area per unit dry mass, typically mm2/mg or m2/kg)}
+\item{Height}{Canopy height at maturity (typically in metres)}
+\item{SeedMass}{Seed mass (typically in mg or g)}
+}
+Row names should represent species names or identifiers.}
 }
 \value{
-A data frame with an additional column 'LHS_strategy' containing the calculated LHS strategy.
+A data frame with the original columns plus:
+\describe{
+\item{log_SLA}{Natural logarithm of SLA}
+\item{log_Height}{Natural logarithm of Height}
+\item{log_SeedMass}{Natural logarithm of SeedMass}
+\item{LHS_strategy}{Character string indicating the LHS strategy type (e.g., "S-L-S")}
+}
 }
 \description{
-This function calculates the LHS strategy for plant species based on their SLA (Specific Leaf Area),
-Height, and Seed Mass values.
+The LHS scheme uses three fundamental plant traits that reflect important trade-offs
+controlling plant strategies:
+\itemize{
+\item \strong{Specific Leaf Area (SLA)}: Light-capturing area deployed per unit dry mass,
+reflecting the trade-off between rapid resource acquisition and leaf longevity
+\item \strong{Height}: Canopy height at maturity, expressing the amount of growth attempted
+between disturbances and competitive ability for light
+\item \strong{Seed Mass}: Reflecting the trade-off between seed number and individual seed
+provisioning, affecting dispersal capacity and seedling survival
+}
+
+All three axes are log-scaled as they are approximately lognormally distributed between species.
+Species are classified into eight strategy types based on whether their log-transformed trait
+values are above (L = Large) or below (S = Small) the median values.
 }
 \details{
-The function calculates median values for SLA, Height, and SeedMass from the input data.
-It then determines the LHS strategy for each species based on whether its trait values are
-less than or equal to (S) or greater than (L) the median values.
+This function implements the LHS plant ecology strategy scheme proposed by Westoby (1998),
+which classifies plant species based on three key functional traits: specific leaf area (SLA),
+canopy height at maturity, and seed mass. The LHS scheme provides a quantitative framework
+for comparing plant ecological strategies worldwide.
 
-The resulting strategy is a combination of three letters (S or L) representing Leaf (SLA),
-Height, and Seed (SeedMass) respectively, separated by hyphens.
+The function performs the following operations:
+\enumerate{
+\item Validates input data for required columns and checks for missing, zero, or negative values
+\item Log-transforms all three traits
+\item Calculates median values for each log-transformed trait
+\item Classifies each species based on whether traits are above (L) or below (S) medians
+\item Returns the original data with added log-transformed columns and strategy classification
+}
 }
 \examples{
 data(PFF)
 pff <- PFF[, c("SLA", "Height", "SeedMass")]
+rownames(pff) <- PFF$species
+head(pff)
 result <- LHS(pff)
 head(result)
 
 }
 \references{
 \enumerate{
-\item Westoby, M. (1998). A leaf-height-seed (LHS) plant ecology strategy scheme. Plant and Soil, 199, 213–227. https://doi.org/10.1023/A:1004327224729
-\item Yang, J., Wang, Z., Zheng, Y., & Pan, Y. (2022). Shifts in plant ecological strategies in remnant forest patches along urbanization gradients. Forest Ecology and Management, 524, 120540. https://doi.org/10.1016/j.foreco.2022.120540
+\item Westoby, M. (1998). A leaf-height-seed (LHS) plant ecology strategy scheme.
+Plant and Soil, 199, 213–227.
+\item Yang, J., Wang, Z., Zheng, Y., & Pan, Y. (2022). Shifts in plant ecological strategies
+in remnant forest patches along urbanization gradients. Forest Ecology and Management, 524, 120540.
 }
 }

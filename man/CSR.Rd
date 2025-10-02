@@ -2,24 +2,60 @@
 % Please edit documentation in R/CSR.R
 \name{CSR}
 \alias{CSR}
-\title{Calculate CSR strategy for multiple plant species}
+\title{Classify Plant Strategies using Pierce et al. (2017) CSR Method}
 \usage{
 CSR(data)
 }
 \arguments{
-\item{data}{A dataframe containing columns for LA (Leaf Area), LDMC (Leaf Dry Matter Content), and SLA (Specific Leaf Area).}
+\item{data}{A data frame containing at least three numeric columns:
+\code{LA}, \code{LDMC}, and \code{SLA}.
+\itemize{
+\item \strong{LA}: Leaf area in mm\eqn{^2}.
+\item \strong{LDMC}: Leaf dry matter content (\%).
+\item \strong{SLA}: Specific leaf area in mm\eqn{^2}/mg.
+}}
 }
 \value{
-A dataframe with the original input data and additional columns:
+A data frame containing the original input data plus four additional columns:
 \itemize{
-\item C: Competitive strategy score
-\item S: Stress-tolerant strategy score
-\item R: Ruderal strategy score
-\item type: The dominant CSR strategy type
+\item C: Competitor strategy proportion (0-100\%)
+\item S: Stress-tolerator strategy proportion (0-100\%)
+\item R: Ruderal strategy proportion (0-100\%)
+\item type: CSR strategy type classification (character) - one of 19 possible categories:
+"C", "C/CR", "C/CS", "CR", "C/CSR", "CS", "CR/CSR", "CS/CSR", "R/CR", "CSR",
+"S/CS", "R/CSR", "S/CSR", "R", "SR/CSR", "S", "R/SR", "S/SR", "SR"
 }
 }
 \description{
-This function processes a dataframe containing leaf traits (LA, LDMC, SLA) and applies the Strate_CSR function to each row.
+This function calculates CSR (Competitor-Stress tolerator-Ruderal) ecological strategies
+for plant species based on three key functional traits: Leaf Area (LA), Leaf Dry Matter
+Content (LDMC), and Specific Leaf Area (SLA). The CSR classification system was originally
+developed by Grime (1974) and this implementation follows the global method by Pierce et al. (2017).
+}
+\details{
+The function implements the global CSR classification method which:
+\enumerate{
+\item Transforms the three input traits using species-specific equations
+\item Calculates derived traits including leaf dry weight, fresh weight, and succulence index
+\item Adjusts LDMC for succulent species (>5 g dm-2)
+\item Projects traits onto principal component axes from a global calibration dataset
+\item Applies outlier corrections to keep values within calibrated ranges
+\item Converts to proportional CSR values that sum to 100\%
+\item Assigns the closest matching tertiary CSR strategy type
+}
+
+The three strategies represent different ecological approaches:
+\itemize{
+\item \strong{C (Competitor)}: Species adapted to productive, undisturbed environments
+\item \strong{S (Stress-tolerator)}: Species adapted to resource-limited environments
+\item \strong{R (Ruderal)}: Species adapted to frequently disturbed environments
+}
+}
+\note{
+\itemize{
+\item All input values must be positive numbers
+\item NA values are not permitted and will cause the function to stop with an error
+}
 }
 \examples{
 LA <- c(369615.7, 11.8, 55.7, 36061.2, 22391.8, 30068.1, 31059.5, 29895.1)
@@ -32,6 +68,8 @@ CSR(data = traits)
 \references{
 \enumerate{
 \item Grime, J.P. (1974). Vegetation classification by reference to strategies. Nature, 250, 26–31.
-\item Pierce, S., Negreiros, D., Cerabolini, B.E.L., Kattge, J., Díaz, S., et al. (2017). A global method for calculating plant CSR ecological strategies applied across biomes world-wide. Funct Ecol, 31: 444-457.
+\item Pierce, S., Negreiros, D., Cerabolini, B.E.L., Kattge, J., Díaz, S., et al. (2017). A global method
+for calculating plant CSR ecological strategies applied across biomes world-wide.
+Functional Ecology, 31: 444-457.
 }
 }
